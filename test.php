@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ru">
 <head>
-	<title></title>
     <meta charset="UTF-8">
 
     <title>Тест</title>
@@ -18,24 +17,26 @@
         foreach($test->questions as $question) {
             echo '<h3>' . $question->question . '</h3>';
             
-            foreach($question->var as $key => $choice) {
-                echo '<label><input type="radio" value="' . $key . '" name="' . $question->id . '">'. $var . '</label>';
+            foreach($question->choices as $key => $choice) {
+                echo '<label><input type="radio" value="' . $key . '" name="' . $question->id . '">'. $choice . '</label>';
             }
         }
     }
     ?>
-    <br><input type="submit" value="Проверка">
+    <br><input type="submit" value="Проверка ">
 
 </form>
 </body>
 </html>
 
 <?php
+
+
 if ($_POST) {
     $count = 0;
     
     foreach($_POST as $number => $answer) {
-        foreach($test->questions as $questions) {
+        foreach($test->questions as $question) {
             if ($answer === $question->correct && $number === $question->id) {
                 $count++;
             }
